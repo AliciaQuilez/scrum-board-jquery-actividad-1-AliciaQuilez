@@ -15,7 +15,6 @@ $(document).ready(function() {
             </div>
             <div class="addTask">
                 <input type="text">
-                <button>Add task</button>
             </div>
         </div>`
 
@@ -87,9 +86,9 @@ $(document).ready(function() {
   })
 
   //delegate event para eliminar tareas
-  $('.lists').on('click', '.list .addTask button', function(event) {
+  $('.lists').on('click', '.list .tasks .task button', function(event) {
     console.log($(event.target));
-    let tasksNode = $(event.target.parentNode.parentNode);
+    let tasksNode = $(event.target.parentNode);
     console.log(tasksNode);
     tasksNode.detach();
   })
