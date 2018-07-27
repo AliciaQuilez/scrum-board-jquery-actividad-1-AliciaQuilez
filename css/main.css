@@ -1,26 +1,58 @@
-body{
+body {
   display: flex;
   flex-direction: column;
   padding: 3em;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }
 
-.addListWrapper{
+h4 {
+  font-weight: 700;
+  font-size: 1.7em;
+  text-transform: uppercase;
+}
+
+input {
+  font-weight: 200;
+}
+
+.addListWrapper {
   height: 10vh;
+  position: fixed;
+  z-index: 1;
 }
 
-.lists{
-  display: flex;
+.lists {
+  position: relative;
+  padding-top: 7rem;
+  display: inherit;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: stretch;
   align-self: flex-start;
-  overflow-x: auto;
-  min-height: 90vh;
+  /*min-width: 100%;*/
 }
 
-.list{
+.list {
   flex: 0 0 auto;
-  width: 20vw;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  max-width: 30%;
+  min-width: 30%;
   padding: 0 1em;
+  margin: 0 0.5em;
+}
+
+.listHeader, .task {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.task {}
+.card-panel{
+  border-radius: 10px;
 }
