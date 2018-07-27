@@ -10,9 +10,7 @@ $(document).ready(function() {
                 <h4>${name}</h4>
                 <button>X</button>
             </div>
-            <div class="tasks">
-
-            </div>
+            <div class="tasks"></div>
             <div class="addTask">
                 <input type="text" placeholder="Add task">
             </div>
