@@ -37,7 +37,7 @@ $(document).ready(function() {
 
  // codigo html para una task
   let createTaskString = taskName =>
-    `<div class="task">
+    `<div class="task card-panel">
         <div class="text">${taskName}</div>
         <button>
               X
