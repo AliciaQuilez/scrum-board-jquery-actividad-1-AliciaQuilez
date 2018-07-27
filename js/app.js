@@ -5,10 +5,10 @@ $(document).ready(function() {
   const generateId = namespace => `${namespace}-${Date.now()}-${Math.ceil(Math.random()*100)}`
   // función que contiene el string de creación de una lista
   const createListString = name =>
-    `<div class="list" id="${generateId('list')}">
+    `<div class="list indigo darken-1" id="${generateId('list')}">
             <div class="listHeader">
                 <h4>${name}</h4>
-                <button>X</button>
+                <a class="waves-effect waves-teal btn-flat"><i class="material-icons">close</i></a>
             </div>
             <div class="tasks"></div>
             <div class="addTask">
@@ -33,13 +33,11 @@ $(document).ready(function() {
   }
 
 
- // codigo html para una task
+  // codigo html para una task
   let createTaskString = taskName =>
     `<div class="task card-panel">
         <div class="text">${taskName}</div>
-        <button>
-              X
-          </button>
+        <a class="waves-effect waves-teal btn-flat"><i class="material-icons">close</i></a>
     </div>`
 
   // función para append la nueva task pasamos el nodo donde crea y el input que hemos rellenado
@@ -66,9 +64,11 @@ $(document).ready(function() {
   })
 
   // evento delegado para borrar lista y afecte al botón creado despues del .document.ready
-  $('.lists').on('click', '.listHeader button', function(event) {
-    let listNode = $(event.target.parentNode.parentNode);
-    listNode.detach();
+  $('.lists').on('click', '.listHeader a', function(event) {
+    let listNode = $(event.target.parentNode.parentNode.parentNode);
+    setTimeout(function() {
+      listNode.detach();
+    }, 600);
   })
 
   //delegate event para añadir tareas
@@ -84,10 +84,13 @@ $(document).ready(function() {
   })
 
   //delegate event para eliminar tareas
-  $('.lists').on('click', '.list .tasks .task button', function(event) {
+  $('.lists').on('click', '.list .tasks .task a', function(event) {
     console.log($(event.target));
-    let tasksNode = $(event.target.parentNode);
+    let tasksNode = $(event.target.parentNode.parentNode);
     console.log(tasksNode);
+    setTimeout(function() {
     tasksNode.detach();
+    }, 600);
+
   })
 })
