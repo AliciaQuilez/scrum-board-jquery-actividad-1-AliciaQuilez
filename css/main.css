@@ -1,0 +1,26 @@
+body{
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}
+
+.addListWrapper{
+  height: 10vh;
+}
+
+.lists{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-self: flex-start;
+  overflow-x: auto;
+  min-height: 90vh;
+}
+
+.list{
+  flex: 0 0 auto;
+  width: 20vw;
+  padding: 0 1em;
+}
