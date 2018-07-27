@@ -6,7 +6,12 @@ body {
   font-weight: 400;
   min-height
 }
-
+h1 {
+    font-size: 5em;
+    font-weight: 700;
+    color: #bbdefb;
+    margin: 0.67em 0;
+}
 h4 {
   font-weight: 700;
   font-size: 1.7em;
@@ -39,9 +44,9 @@ input {
   flex: 0 0 300px;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  max-width: 400px;
-  min-width: 400px;
-  padding: 0 1em;
+  max-width: 300px;
+  min-width: 300px;
+  padding: 1em 1em;
   margin: 0 0.5em;
 }
 

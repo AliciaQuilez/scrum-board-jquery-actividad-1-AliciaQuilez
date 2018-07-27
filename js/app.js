@@ -60,6 +60,7 @@ $(document).ready(function() {
     // cuando se clicka el botón enter --> code 13
     if (event.keyCode === 13) {
       appendNewList();
+
     }
   })
 
