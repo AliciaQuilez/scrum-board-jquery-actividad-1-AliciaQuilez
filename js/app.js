@@ -51,7 +51,7 @@ $(document).ready(function() {
             </label>
           </p>
         </form>
-        <span class="task-name">${taskName}</span>
+        <span class="task-name" contentEditable="false">${taskName}</span>
         <a class="btn-flat"><i class="material-icons">clear</i></a>
     </div>`
 
@@ -132,8 +132,14 @@ $(document).ready(function() {
     tasksNode.detach();
   })
 
-  //delegate event para añadir tareas con click
-  // $('.lists').on('dblclick', '.list .addTask .task-name', function(event) {
-  //   $(event.target).attr('contentEditable', true);
-  // })
+
+  $('.lists').on('click', '.task .task-name', function(event) {
+    $(event.target).attr('contentEditable', true);
+  })
+
+  // function nameDisable ()
+  // {
+  //   console.log('hola');
+  //   $(event.target.querySelector('.task-name')).attr('contentEditable', true);
+  // }
 })

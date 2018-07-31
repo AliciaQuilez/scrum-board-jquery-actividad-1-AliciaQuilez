@@ -75,7 +75,9 @@ justify-content: flex-start;
 }
 .task span{
   flex: 6;
+  font-size: 1.2rem;
 }
+
 [type="checkbox"]:checked+span:not(.lever):before{
   border-right: 2px solid #1e88e5;
 border-bottom: 2px solid #1e88e5;
