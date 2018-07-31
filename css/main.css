@@ -4,18 +4,19 @@ body {
   padding: 3em;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  min-height
 }
+
 h1 {
-    font-size: 5em;
-    font-weight: 700;
-    color: #bbdefb;
-    margin: 0.67em 0;
+  font-size: 5em;
+  font-weight: 700;
+  color: #bbdefb;
+  margin: 0.67em 0;
 }
+
 h4 {
   font-weight: 700;
   font-size: 1.7em;
-  color:#ffffff;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -24,11 +25,16 @@ input {
 }
 
 .addListWrapper {
-  height: 10vh;
   position: fixed;
   z-index: 1;
+  display: flex;
+  flex-direction: row;
 }
+.addTask{
 
+  display: flex;
+  flex-direction: row;
+}
 .lists {
   position: relative;
   padding-top: 7rem;
@@ -65,5 +71,18 @@ input {
 }
 
 .btn-flat {
-    border-radius: 50px;
-    padding: 0 8px;}
+  border-radius: 50px;
+  padding: 0 8px;
+}
+
+.add i{
+  font-size: 1.7rem;
+  color: #9e9e9e;
+  transform: rotate(0deg);
+  -webkit-transition: -webkit-transform .2s ease-in-out;
+  -ms-transition: -ms-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+}
+.add i:hover{
+  transform: rotate(180deg);
+}
