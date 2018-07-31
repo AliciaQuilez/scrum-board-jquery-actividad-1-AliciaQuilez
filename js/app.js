@@ -2,6 +2,7 @@ $(document).ready(function() {
   // cogemos el input del header
   let addListInput = $('.addListWrapper input');
   let addListButton = $('.addListWrapper a');
+
   // genera un id para cada lista
   const generateId = namespace => `${namespace}-${Date.now()}-${Math.ceil(Math.random()*100)}`
   // función que contiene el string de creación de una lista
@@ -9,12 +10,12 @@ $(document).ready(function() {
     `<div class="list indigo darken-1" id="${generateId('list')}">
             <div class="listHeader">
                 <h4>${name}</h4>
-                <a class="waves-effect waves-teal btn-flat"><i class="material-icons">clear</i></a>
+                <a class="waves-effect waves-default btn-flat closeList"><i class="material-icons">clear</i></a>
             </div>
             <div class="tasks"></div>
             <div class="addTask">
                 <input type="text" placeholder="Add task">
-                <a class="waves-effect waves-teal btn-flat add"><i class="material-icons">add</i></a>
+                <a class="waves-effect waves-default btn-flat add"><i class="material-icons">add</i></a>
             </div>
         </div>`
 
@@ -23,7 +24,7 @@ $(document).ready(function() {
     //  cogemos el text del input
     let listName = addListInput.val();
     //Nombre por defecto de la lista si el valor es ''
-    if (listName === ''){
+    if (listName === '') {
       listName = 'New List';
     }
     // creamos el nodo .list
@@ -43,7 +44,7 @@ $(document).ready(function() {
   let createTaskString = taskName =>
     `<div class="task card-panel">
         <div class="text">${taskName}</div>
-        <a class="waves-effect waves-teal btn-flat"><i class="material-icons">clear</i></a>
+        <a class="waves-effect waves-default btn-flat"><i class="material-icons">clear</i></a>
     </div>`
 
   // función para append la nueva task pasamos el nodo donde crea y el input que hemos rellenado
@@ -51,7 +52,7 @@ $(document).ready(function() {
     // cogemos el valor del input de task
     let taskInputValue = tInput.val();
     //Nombre por defecto de la lista si el valor es ''
-    if (taskInputValue === ''){
+    if (taskInputValue === '') {
       taskInputValue = 'New Task';
     }
     // añadimos a task el string que crea el html de task
@@ -64,8 +65,8 @@ $(document).ready(function() {
     tInput.val('');
   }
 
-  // Listeners
 
+  // Listeners
   addListInput.on('keyup', function(event) {
     // cuando se clicka el botón enter --> code 13
     if (event.keyCode === 13) {
@@ -75,16 +76,22 @@ $(document).ready(function() {
   })
   //añadir lista clickando en el botón
   addListButton.on('click', function(event) {
-      appendNewList();
+    appendNewList();
   })
 
 
   // evento delegado para borrar lista y afecte al botón creado despues del .document.ready
   $('.lists').on('click', '.listHeader a', function(event) {
     let listNode = $(event.target.parentNode.parentNode.parentNode);
+    listNode.detach();
+  })
 
-      listNode.detach();
-
+  //mostrar opciones de la lista
+  $('.lists').on('mouseover', '.list .listHeader', function(event) {
+    $(event.target.lastElementChild).addClass('show');
+  })
+  $('.lists').on('mouseleave', '.list .listHeader', function(event) {
+    $('.closeList').removeClass('show');
   })
 
   //delegate event para añadir tareas con enter
@@ -97,6 +104,17 @@ $(document).ready(function() {
       // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
       appendNewTask(taskNode, addTaskInput);
     }
+  })
+
+  //delegate event para añadir tareas con click
+  $('.lists').on('click', '.list .addTask a', function(event) {
+    //guarda el nodo ".tasks"
+    let taskNode = $(event.target.parentNode.parentNode.previousElementSibling);
+    // guarda el propio input
+    let addTaskInput = $(event.target.parentNode.previousElementSibling);
+    // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
+    appendNewTask(taskNode, addTaskInput);
+
   })
 
   //delegate event para eliminar tareas

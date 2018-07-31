@@ -72,7 +72,13 @@ input {
 
 .btn-flat {
   border-radius: 50px;
-  padding: 0 8px;
+}
+
+.closeList{
+  display: none
+}
+.show{
+  display: inline-block;
 }
 
 .add i{
@@ -85,4 +91,13 @@ input {
 }
 .add i:hover{
   transform: rotate(180deg);
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]){
+  border-bottom: 2px solid #2962ff;
+box-shadow: 0 1px 0 0 #2962ff;
+}
+
+input[type=text]:not(.browser-default){
+  color:white;
 }
