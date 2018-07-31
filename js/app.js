@@ -43,8 +43,16 @@ $(document).ready(function() {
   // codigo html para una task
   let createTaskString = taskName =>
     `<div class="task card-panel">
-        <div class="text">${taskName}</div>
-        <a class="waves-effect waves-default btn-flat"><i class="material-icons">clear</i></a>
+        <form action="#">
+          <p>
+            <label>
+              <input type="checkbox"/>
+              <span></span>
+            </label>
+          </p>
+        </form>
+        <span class="task-name">${taskName}</span>
+        <a class="btn-flat"><i class="material-icons">clear</i></a>
     </div>`
 
   // función para append la nueva task pasamos el nodo donde crea y el input que hemos rellenado
@@ -114,7 +122,6 @@ $(document).ready(function() {
     let addTaskInput = $(event.target.parentNode.previousElementSibling);
     // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
     appendNewTask(taskNode, addTaskInput);
-
   })
 
   //delegate event para eliminar tareas
@@ -124,4 +131,9 @@ $(document).ready(function() {
     console.log(tasksNode);
     tasksNode.detach();
   })
+
+  //delegate event para añadir tareas con click
+  // $('.lists').on('dblclick', '.list .addTask .task-name', function(event) {
+  //   $(event.target).attr('contentEditable', true);
+  // })
 })
