@@ -3,6 +3,7 @@ $(document).ready(function() {
   let addListInput = $('.addListWrapper input');
   let addListButton = $('.addListWrapper a');
 
+
   // genera un id para cada lista
   const generateId = namespace => `${namespace}-${Date.now()}-${Math.ceil(Math.random()*100)}`
   // función que contiene el string de creación de una lista
@@ -51,8 +52,7 @@ $(document).ready(function() {
             </label>
           </p>
         </form>
-        <input class="task-name" type="text-area" placeholder="${taskName}">
-        <!--<span contentEditable="false">${taskName}</span>-->
+        <textarea class="task-name" cols="8" rows="1" placeholder="${taskName}" disabled="true" autofocus="false"></textarea>
         <a class="btn-flat"><i class="material-icons">clear</i></a>
     </div>`
 
@@ -107,12 +107,13 @@ $(document).ready(function() {
   $('.lists').on('keyup', '.addTask input', function(event) {
     if (event.keyCode === 13) {
       //guarda el nodo ".tasks"
-    let taskNode = $(event.target.parentNode.previousElementSibling);
-
-      // guarda el propio input
+    let taskNode = $(event.target.parentNode.parentNode.querySelector('.tasks'));
+          // guarda el propio input
       let addTaskInput = $(event.target);
       // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
       appendNewTask(taskNode, addTaskInput);
+
+      autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
     }
   })
 
@@ -122,22 +123,26 @@ $(document).ready(function() {
     let taskNode = $(event.target.parentNode.parentNode.parentNode.querySelector('.tasks'));
     // guarda el propio input
     let addTaskInput = $(event.target.parentNode.parentNode.querySelector('input'));
-    console.log(addTaskInput);
+
     // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
     appendNewTask(taskNode, addTaskInput);
+
+    autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
   })
 
   //delegate event para eliminar tareas
   $('.lists').on('click', '.tasks .task a', function(event) {
     console.log($(event.target));
     let tasksNode = $(event.target.parentNode.parentNode);
-    console.log(tasksNode);
     tasksNode.detach();
   })
 
 
-  $('.lists').on('click', '.task .task-name', function(event) {
-    $(event.target).attr('contentEditable', true);
+  $('.lists').on('dblclick', '.task .task-name', function(event) {
+    console.log('hola');
+   $(event.target).attr('disabled', false);
+    $(event.target).attr('autofocus',true);
+    autosize($(event.target));
   })
 
   // function nameDisable ()
@@ -146,5 +151,5 @@ $(document).ready(function() {
   //   $(event.target.querySelector('.task-name')).attr('contentEditable', true);
   // }
 
-  autosize(document.querySelector('.task-name'));
+    autosize(document.querySelector('textarea'));
 })
