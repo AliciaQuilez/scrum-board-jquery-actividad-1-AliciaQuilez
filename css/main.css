@@ -73,10 +73,7 @@ justify-content: flex-start;
 .task form{
   flex: 1;
 }
-.task span{
-  flex: 6;
-  font-size: 1.2rem;
-}
+
 
 [type="checkbox"]:checked+span:not(.lever):before{
   border-right: 2px solid #1e88e5;
@@ -113,9 +110,20 @@ border-bottom: 2px solid #1e88e5;
 
 input[type=text]:not(.browser-default):focus:not([readonly]){
   border-bottom: 2px solid #2962ff;
-box-shadow: 0 1px 0 0 #2962ff;
+  box-shadow: 0 1px 0 0 #2962ff;
 }
 
 input[type=text]:not(.browser-default){
   color:white;
+}
+
+.task input[type=text]:not(.browser-default) {
+  color:black ;
+  font-weight: 400;
+  border-bottom: none ;
+  font-size: 1.2rem;
+}
+.task input[type=text]:not(.browser-default)::placeholder {
+  color:black ;
+  font-size: 1.2rem;
 }

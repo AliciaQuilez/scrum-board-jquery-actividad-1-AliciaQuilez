@@ -51,7 +51,8 @@ $(document).ready(function() {
             </label>
           </p>
         </form>
-        <span class="task-name" contentEditable="false">${taskName}</span>
+        <input class="task-name" type="text-area" placeholder="${taskName}">
+        <!--<span contentEditable="false">${taskName}</span>-->
         <a class="btn-flat"><i class="material-icons">clear</i></a>
     </div>`
 
@@ -96,17 +97,18 @@ $(document).ready(function() {
 
   //mostrar opciones de la lista
   $('.lists').on('mouseover', '.list .listHeader', function(event) {
-    $(event.target.lastElementChild).addClass('show');
+    $(event.target.parentNode.parentNode.querySelector('a')).addClass('show');
   })
   $('.lists').on('mouseleave', '.list .listHeader', function(event) {
     $('.closeList').removeClass('show');
   })
 
   //delegate event para añadir tareas con enter
-  $('.lists').on('keyup', '.list .addTask input', function(event) {
+  $('.lists').on('keyup', '.addTask input', function(event) {
     if (event.keyCode === 13) {
       //guarda el nodo ".tasks"
-      let taskNode = $(event.target.parentNode.previousElementSibling);
+    let taskNode = $(event.target.parentNode.previousElementSibling);
+
       // guarda el propio input
       let addTaskInput = $(event.target);
       // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
@@ -115,17 +117,18 @@ $(document).ready(function() {
   })
 
   //delegate event para añadir tareas con click
-  $('.lists').on('click', '.list .addTask a', function(event) {
+  $('.lists').on('click', '.addTask i', function(event) {
     //guarda el nodo ".tasks"
-    let taskNode = $(event.target.parentNode.parentNode.previousElementSibling);
+    let taskNode = $(event.target.parentNode.parentNode.parentNode.querySelector('.tasks'));
     // guarda el propio input
-    let addTaskInput = $(event.target.parentNode.previousElementSibling);
+    let addTaskInput = $(event.target.parentNode.parentNode.querySelector('input'));
+    console.log(addTaskInput);
     // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
     appendNewTask(taskNode, addTaskInput);
   })
 
   //delegate event para eliminar tareas
-  $('.lists').on('click', '.list .tasks .task a', function(event) {
+  $('.lists').on('click', '.tasks .task a', function(event) {
     console.log($(event.target));
     let tasksNode = $(event.target.parentNode.parentNode);
     console.log(tasksNode);
@@ -142,4 +145,6 @@ $(document).ready(function() {
   //   console.log('hola');
   //   $(event.target.querySelector('.task-name')).attr('contentEditable', true);
   // }
+
+  autosize(document.querySelector('.task-name'));
 })
