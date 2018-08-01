@@ -26,7 +26,8 @@ $(document).ready(function() {
     let listName = addListInput.val();
     //Nombre por defecto de la lista si el valor es ''
     if (listName === '') {
-      listName = 'New List';
+      alert("Añade un título");
+      return;
     }
     // creamos el nodo .list
     let list = $(createListString(listName));
@@ -62,7 +63,8 @@ $(document).ready(function() {
     let taskInputValue = tInput.val();
     //Nombre por defecto de la lista si el valor es ''
     if (taskInputValue === '') {
-      taskInputValue = 'New Task';
+      alert("Añade un título");
+      return;
     }
     // añadimos a task el string que crea el html de task
     let task = $(createTaskString(taskInputValue));
@@ -143,6 +145,12 @@ $(document).ready(function() {
    $(event.target).attr('disabled', false);
     $(event.target).attr('autofocus',true);
     autosize($(event.target));
+  })
+
+  $('.lists').on('focus', '.task .task-name', function(event) {
+    if (event.keyCode === 13) {
+      $(event.target).attr('autofocus',false);
+    }
   })
 
   // function nameDisable ()
