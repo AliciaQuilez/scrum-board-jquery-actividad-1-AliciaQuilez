@@ -82,12 +82,12 @@ $(document).ready(function() {
     // cuando se clicka el botón enter --> code 13
     if (event.keyCode === 13) {
       appendNewList();
-
     }
   })
   //añadir lista clickando en el botón
   addListButton.on('click', function(event) {
     appendNewList();
+    $(document.querySelector('label')).removeClass('active');
   })
 
 
@@ -128,6 +128,7 @@ $(document).ready(function() {
 
     // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
     appendNewTask(taskNode, addTaskInput);
+
 
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
   })
