@@ -136,14 +136,14 @@ input[type=text]:not(.browser-default) {
 .task-name {
   resize: none;
   color: black;
-  font-size: 1em;
+  font-size: 1.1em;
   border: none;
-  height: 4rem;
+  height: 3rem;
 }
 
 .task-name::placeholder {
   color: black;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .task form p {
@@ -166,7 +166,7 @@ input[type=text]:not(.browser-default) {
 
 .collapsible-header i {
   margin-right: 0rem;
-  font-size: 1.3rem
+  font-size: 1.3rem;
 }
 
 .collapsible-body {
@@ -179,4 +179,14 @@ input[type=text]:not(.browser-default) {
 
 .collapsible-body ul {
   padding-left: 0.2em;
+}
+ .collapsible-body i{
+   font-size: 1.3rem;
+
+ }
+.collapsible-body li{
+  padding: 0.3em 0;
+}
+.collapsible-body a{
+  color:#686868;
 }

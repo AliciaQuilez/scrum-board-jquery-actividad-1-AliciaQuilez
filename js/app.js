@@ -11,7 +11,7 @@ $(document).ready(function() {
     `<div class="list indigo darken-1" id="${generateId('list')}">
             <div class="listHeader">
                 <h4>${name}</h4>
-                <a class="waves-effect waves-default btn-flat closeList"><i class="material-icons">clear</i></a>
+                <a class="waves-effect waves-default btn-flat"><i class="material-icons">clear</i></a>
             </div>
             <div class="tasks"></div>
             <div class="addTask">
@@ -41,6 +41,11 @@ $(document).ready(function() {
 
   }
 
+  const nameDisable = function() {
+    console.log('hola');
+    $(event.target.querySelector('.task-name')).attr('disabled', true);
+  }
+
 
   // codigo html para una task
   let createTaskString = taskName =>
@@ -59,7 +64,7 @@ $(document).ready(function() {
           <div class="collapsible-header"><i class="material-icons">settings</i></div>
           <div class="collapsible-body">
             <ul>
-              <li><a href="#"><i class="material-icons">create</i></a></li>
+              <li><a class="edit" href="#"><i class="material-icons">create</i></a></li>
               <li><a class="delete" href="#"><i class="material-icons">delete</i></a></li>
             </ul>
           </div>
@@ -104,17 +109,10 @@ $(document).ready(function() {
 
   // evento delegado para borrar lista y afecte al botón creado despues del .document.ready
   $('.lists').on('click', '.listHeader a', function(event) {
-    let listNode = $(event.target.parentNode.parentNode.parentNode);
+    let listNode = $(event.target.closest('.list'));
     listNode.detach();
   })
 
-  //mostrar opciones de la lista
-  $('.lists').on('mouseover', '.list .listHeader', function(event) {
-    $(event.target.parentNode.parentNode.querySelector('a')).addClass('show');
-  })
-  $('.lists').on('mouseleave', '.list .listHeader', function(event) {
-    $('.closeList').removeClass('show');
-  })
 
   //delegate event para añadir tareas con enter
   $('.lists').on('keyup', '.addTask input', function(event) {
@@ -133,8 +131,6 @@ $(document).ready(function() {
   })
 
 
-
-
   //delegate event para añadir tareas con click
   $('.lists').on('click', '.addTask i', function(event) {
     //guarda el nodo ".tasks"
@@ -145,38 +141,30 @@ $(document).ready(function() {
     // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
     appendNewTask(taskNode, addTaskInput);
 
-
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
 
     $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
+
   })
 
 
   //delegate event para eliminar tareas
   $('.lists').on('click', '.tasks .task .delete', function(event) {
-    let tasksNode = $(event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
+    let tasksNode = $(event.target.closest('.task'));
     tasksNode.detach();
   })
 
 
-  $('.lists').on('dblclick', '.task .task-name', function(event) {
-    console.log('hola');
-    $(event.target).attr('disabled', false);
-    $(event.target).attr('autofocus', true);
-    autosize($(event.target));
+  $('.lists').on('click', '.task .edit', function(event) {
+    $(event.target.closest('.task').querySelector('.task-name')).removeAttr('disabled');
+    $(event.target.closest('.task').querySelector('.task-name')).focus();
+    autosize($(event.target.closest('.task').querySelector('.task-name')));
   })
 
-  $('.lists').on('focus', '.task .task-name', function(event) {
+  $('.lists').on('keyup', '.task .task-name', function(event) {
     if (event.keyCode === 13) {
-      $(event.target).attr('autofocus', false);
-    }
-  })
+      event.preventDefault();
+      $(event.target).attr('disabled');
+    }})
 
-  // function nameDisable ()
-  // {
-  //   console.log('hola');
-  //   $(event.target.querySelector('.task-name')).attr('contentEditable', true);
-  // }
-
-  autosize(document.querySelector('textarea'));
 })
