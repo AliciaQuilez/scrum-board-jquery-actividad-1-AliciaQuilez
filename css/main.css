@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  padding: 2em 3em;
+  padding: 0.5em 3em;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   overflow-y: hidden;
