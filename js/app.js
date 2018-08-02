@@ -54,8 +54,18 @@ $(document).ready(function() {
           </p>
         </form>
         <textarea class="task-name" cols="8" rows="1" placeholder="${taskName}" disabled="true" autofocus="false"></textarea>
-        <a class="btn-flat"><i class="material-icons">clear</i></a>
+        <ul class="collapsible">
+        <li>
+          <div class="collapsible-header"><i class="material-icons">settings</i></div>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="#"><i class="material-icons">create</i></a></li>
+              <li><a class="delete" href="#"><i class="material-icons">delete</i></a></li>
+            </ul>
+          </div>
+        </li>
     </div>`
+
 
   // función para append la nueva task pasamos el nodo donde crea y el input que hemos rellenado
   const appendNewTask = (tNode, tInput) => {
@@ -84,6 +94,7 @@ $(document).ready(function() {
       appendNewList();
     }
   })
+
   //añadir lista clickando en el botón
   addListButton.on('click', function(event) {
     appendNewList();
@@ -109,15 +120,20 @@ $(document).ready(function() {
   $('.lists').on('keyup', '.addTask input', function(event) {
     if (event.keyCode === 13) {
       //guarda el nodo ".tasks"
-    let taskNode = $(event.target.parentNode.parentNode.querySelector('.tasks'));
-          // guarda el propio input
+      let taskNode = $(event.target.parentNode.parentNode.querySelector('.tasks'));
+      // guarda el propio input
       let addTaskInput = $(event.target);
       // pasa el nodo donde se tiene que crear la nueva task y el input de ésta para recoger el valor dentro de la función
       appendNewTask(taskNode, addTaskInput);
 
       autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
+
+      $(event.target.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
     }
   })
+
+
+
 
   //delegate event para añadir tareas con click
   $('.lists').on('click', '.addTask i', function(event) {
@@ -131,26 +147,28 @@ $(document).ready(function() {
 
 
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
+
+    $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
   })
 
+
   //delegate event para eliminar tareas
-  $('.lists').on('click', '.tasks .task a', function(event) {
-    console.log($(event.target));
-    let tasksNode = $(event.target.parentNode.parentNode);
+  $('.lists').on('click', '.tasks .task .delete', function(event) {
+    let tasksNode = $(event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode);
     tasksNode.detach();
   })
 
 
   $('.lists').on('dblclick', '.task .task-name', function(event) {
     console.log('hola');
-   $(event.target).attr('disabled', false);
-    $(event.target).attr('autofocus',true);
+    $(event.target).attr('disabled', false);
+    $(event.target).attr('autofocus', true);
     autosize($(event.target));
   })
 
   $('.lists').on('focus', '.task .task-name', function(event) {
     if (event.keyCode === 13) {
-      $(event.target).attr('autofocus',false);
+      $(event.target).attr('autofocus', false);
     }
   })
 
@@ -160,5 +178,5 @@ $(document).ready(function() {
   //   $(event.target.querySelector('.task-name')).attr('contentEditable', true);
   // }
 
-    autosize(document.querySelector('textarea'));
+  autosize(document.querySelector('textarea'));
 })
