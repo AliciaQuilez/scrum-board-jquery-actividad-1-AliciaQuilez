@@ -1,9 +1,34 @@
 body {
   display: flex;
   flex-direction: column;
-  padding: 3em;
+  padding: 2em 3em;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  overflow-y: hidden;
+}
+
+.tasks::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+
+.tasks::-webkit-scrollbar-track {
+  background: #3949ab;
+  border-radius: 10px;
+}
+
+/* Handle */
+
+.tasks::-webkit-scrollbar-thumb {
+  background: #283593;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+
+.tasks::-webkit-scrollbar-thumb:hover {
+  background: #1a237e;
 }
 
 h1 {
@@ -31,6 +56,14 @@ input {
   flex-direction: row;
 }
 
+.input-field>label {
+  color: rgba(57, 73, 171, 0.4);
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label {
+  color: #2962ff;
+}
+
 .addTask {
   display: flex;
   flex-direction: row;
@@ -38,7 +71,7 @@ input {
 
 .lists {
   position: relative;
-  padding-top: 7rem;
+  padding-top: 6rem;
   display: inherit;
   flex-direction: row;
   justify-content: flex-start;
@@ -53,7 +86,7 @@ input {
   border-radius: 20px;
   max-width: 300px;
   min-width: 300px;
-  padding: 1em 1em;
+  padding: 0em 0.5em 0.5em 1em;
   margin: 0 0.5em;
 }
 
@@ -63,6 +96,12 @@ input {
   align-self: flex-start;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.tasks {
+  overflow-y: scroll;
+  max-height: 66vh;
+  padding: 0em 0.5em 0em 0em;
 }
 
 .task {
@@ -89,10 +128,6 @@ input {
 .btn-flat {
   border-radius: 50px;
   padding: 0 8px 0 7px;
-}
-
-.closeList {
-  display: none
 }
 
 .show {
@@ -180,13 +215,15 @@ input[type=text]:not(.browser-default) {
 .collapsible-body ul {
   padding-left: 0.2em;
 }
- .collapsible-body i{
-   font-size: 1.3rem;
 
- }
-.collapsible-body li{
+.collapsible-body i {
+  font-size: 1.3rem;
+}
+
+.collapsible-body li {
   padding: 0.3em 0;
 }
-.collapsible-body a{
-  color:#686868;
+
+.collapsible-body a {
+  color: #686868;
 }
