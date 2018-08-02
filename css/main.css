@@ -100,7 +100,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 
 .tasks {
   overflow-y: scroll;
-  max-height: 66vh;
+  max-height: 60vh;
   padding: 0em 0.5em 0em 0em;
 }
 
@@ -171,7 +171,7 @@ input[type=text]:not(.browser-default) {
 .task-name {
   resize: none;
   color: black;
-  font-size: 1.1em;
+  font-size: 0.9em;
   border: none;
   height: 3rem;
 }
