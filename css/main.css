@@ -1,34 +1,10 @@
 body {
   display: flex;
   flex-direction: column;
-  padding: 0.5em 3em;
+  padding: 1em 3em;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   overflow-y: hidden;
-}
-
-.tasks::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-
-.tasks::-webkit-scrollbar-track {
-  background: #3949ab;
-  border-radius: 10px;
-}
-
-/* Handle */
-
-.tasks::-webkit-scrollbar-thumb {
-  background: #283593;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-
-.tasks::-webkit-scrollbar-thumb:hover {
-  background: #1a237e;
 }
 
 h1 {
@@ -100,8 +76,26 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 
 .tasks {
   overflow-y: scroll;
-  max-height: 60vh;
+  max-height: 66vh;
   padding: 0em 0.5em 0em 0em;
+}
+
+.tasks::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tasks::-webkit-scrollbar-track {
+  background: #3949ab;
+  border-radius: 10px;
+}
+
+.tasks::-webkit-scrollbar-thumb {
+  background: #283593;
+  border-radius: 10px;
+}
+
+.tasks::-webkit-scrollbar-thumb:hover {
+  background: #1a237e;
 }
 
 .task {
@@ -226,4 +220,12 @@ input[type=text]:not(.browser-default) {
 
 .collapsible-body a {
   color: #686868;
+}
+
+@media screen (max-width: 767px) {
+
+  .tasks {
+    max-height: 55vh;
+  }
+
 }
