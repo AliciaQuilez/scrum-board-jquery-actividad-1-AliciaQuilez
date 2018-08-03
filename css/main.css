@@ -225,7 +225,7 @@ input[type=text]:not(.browser-default) {
 @media screen (max-width: 767px) {
 
   .tasks {
-    max-height: 55vh;
+    max-height: 40vh;
   }
 
 }
