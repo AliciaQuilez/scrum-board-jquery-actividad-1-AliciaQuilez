@@ -168,6 +168,7 @@ $(document).ready(function() {
 
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
     $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
+    jscolor.installByClassName("jscolor");
     saveStorage();
   })
 
@@ -193,10 +194,10 @@ $(document).ready(function() {
     $(event.target).attr('disabled', true);
     saveStorage();
   })
-
+//modificar color del borde
   $('.lists').on('change', '.tasks .task .jscolor',function(event){
     let color = $(event.target).css('background-color');
     $(event.target.closest('.card-panel')).css("border-left-color", color);
-saveStorage();
+    saveStorage();
   })
 })
