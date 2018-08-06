@@ -166,7 +166,7 @@ input[type=text]:not(.browser-default) {
 .task-name {
   resize: none;
   color: black;
-  font-size: 0.9em;
+  font-size: 1.1em;
   border: none;
   height: 3rem;
 }

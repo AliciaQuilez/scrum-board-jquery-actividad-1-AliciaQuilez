@@ -195,15 +195,6 @@ $(document).ready(function() {
   })
 
 
-  // $('.lists').on('keyup', '.task .task-name', function(event) {
-  //   if (event.keyCode === 13) {
-  //     event.preventDefault();
-  //     $(event.target).attr('disabled');
-  //     saveStorage();
-  //
-  //   }
-  // })
-
 
   // $('.lists').on('click', '.tasks .task button',function(event){
   //   console.log('hola');
@@ -211,4 +202,5 @@ $(document).ready(function() {
   //   console.log('#'+jscolor);
   //   $(event.target.closest('.task')).css("border-left", "10px solid #" + jscolor);
   // })
+  
 })
