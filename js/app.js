@@ -4,6 +4,7 @@ $(document).ready(function() {
     if ('saved' in localStorage) {
       $('.lists').html((JSON.parse(localStorage.getItem('saved'))));
     }
+    M.AutoInit();
   });
 
 
@@ -80,8 +81,8 @@ var bordercolor = '#ffffff';
           <div class="collapsible-header"><i class="material-icons">settings</i></div>
           <div class="collapsible-body">
             <ul>
-              <li><a class="edit"><i class="material-icons">create</i></a></li>
-              <li><a class="delete"><i class="material-icons">delete</i></a></li>
+              <li><button class="edit"><i class="material-icons">create</i></button></li>
+              <li><button class="delete"><i class="material-icons">delete</i></button></li>
               <li><button
     class="jscolor {valueElement:null,value:'66ccff'}"
     style="width:20px; height:20px;"></button></li>
@@ -154,7 +155,7 @@ var bordercolor = '#ffffff';
       autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
 
 
-      $(event.target.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
+      $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
       jscolor.installByClassName("jscolor");
     }
 
@@ -202,9 +203,10 @@ var bordercolor = '#ffffff';
   // })
 
 
-  $('.lists').on('change', '.tasks .task .jscolor',function(event){
+  $('.lists').on('click', '.tasks .task button',function(event){
+    console.log('hola');
     console.log($(event.target.closest('.task')));
-    console.log(jscolor.fromString(jsObj.toHEXString()));
-    $(event.target.closest('.task')).css("border-left", "10px solid" + jscolor);
+    console.log('#'+jscolor);
+    $(event.target.closest('.task')).css("border-left", "10px solid #" + jscolor);
   })
 })

@@ -222,13 +222,18 @@ input[type=text]:not(.browser-default) {
 .collapsible-body a {
   color: #686868;
 }
-.collapsible-body button{
+
+.collapsible-body button {
   border-style: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
 }
+
 .file-field .btn, .file-field .btn-large, .file-field .btn-small {
-    height: 2rem;
-    width: 0.5rem;
-    border-radius: 50px;
+  height: 2rem;
+  width: 0.5rem;
+  border-radius: 50px;
 }
 
 @media (max-width: 767px) {
