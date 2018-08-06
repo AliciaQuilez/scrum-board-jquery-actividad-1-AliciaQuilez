@@ -77,9 +77,9 @@ $(document).ready(function() {
             <ul>
               <li><button class="edit"><i class="material-icons">create</i></button></li>
               <li><button class="delete"><i class="material-icons">delete</i></button></li>
-              <li><button
-    class="jscolor {valueElement:null,value:'66ccff'}"
-    style="width:20px; height:20px;"></button></li>
+              <li><input
+    class="jscolor"
+    style="width:20px; height:20px;"></input></li>
             </ul>
           </div>
         </li>
@@ -95,6 +95,7 @@ $(document).ready(function() {
       alert("Añade un título");
       return;
     }
+
     // añadimos a task el string que crea el html de task
     let task = $(createTaskString(taskInputValue));
 
@@ -147,10 +148,9 @@ $(document).ready(function() {
       appendNewTask(taskNode, addTaskInput);
 
       autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
-
-
       $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
       jscolor.installByClassName("jscolor");
+
     }
     saveStorage();
   })
@@ -194,13 +194,9 @@ $(document).ready(function() {
     saveStorage();
   })
 
+  $('.lists').on('change', '.tasks .task .jscolor',function(event){
+    let color = $(event.target).css('background-color');
+    $(event.target.closest('.card-panel')).css("border-left-color", color);
 
-
-  // $('.lists').on('click', '.tasks .task button',function(event){
-  //   console.log('hola');
-  //   console.log($(event.target.closest('.task')));
-  //   console.log('#'+jscolor);
-  //   $(event.target.closest('.task')).css("border-left", "10px solid #" + jscolor);
-  // })
-  
+  })
 })
