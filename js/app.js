@@ -78,7 +78,7 @@ $(document).ready(function() {
               <li><button class="edit"><i class="material-icons">create</i></button></li>
               <li><button class="delete"><i class="material-icons">delete</i></button></li>
               <li><input
-    class="jscolor"
+    class="jscolor" value="cc0000"
     style="width:20px; height:20px;"></input></li>
             </ul>
           </div>

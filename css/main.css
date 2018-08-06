@@ -235,7 +235,9 @@ input[type=text]:not(.browser-default) {
   width: 0.5rem;
   border-radius: 50px;
 }
-
+.jscolor{
+  cursor:pointer;
+}
 @media (max-width: 767px) {
   .tasks {
     max-height: 50vh;
