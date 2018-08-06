@@ -117,6 +117,7 @@ input[type=text]:not(.browser-default):focus:not([readonly])+label {
 .card-panel {
   border-radius: 7px;
   padding: 20px 10px;
+  border-left: 0px;
 }
 
 .btn-flat {
@@ -221,9 +222,17 @@ input[type=text]:not(.browser-default) {
 .collapsible-body a {
   color: #686868;
 }
+.collapsible-body button{
+  border-style: none;
+}
+.file-field .btn, .file-field .btn-large, .file-field .btn-small {
+    height: 2rem;
+    width: 0.5rem;
+    border-radius: 50px;
+}
 
 @media (max-width: 767px) {
   .tasks {
-    max-height: 40vh;
+    max-height: 50vh;
   }
 }

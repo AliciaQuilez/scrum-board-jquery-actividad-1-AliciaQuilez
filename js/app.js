@@ -1,8 +1,21 @@
 $(document).ready(function() {
+
+  $(window).on("load", function() {
+    if ('saved' in localStorage) {
+      $('.lists').html((JSON.parse(localStorage.getItem('saved'))));
+    }
+  });
+
+
   // cogemos el input del header
   let addListInput = $('.addListWrapper input');
   let addListButton = $('.addListWrapper a');
 
+  const saveStorage = () => {
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('saved', JSON.stringify($('.lists').html()));
+    }
+  }
 
   // genera un id para cada lista
   const generateId = namespace => `${namespace}-${Date.now()}-${Math.ceil(Math.random()*100)}`
@@ -24,8 +37,9 @@ $(document).ready(function() {
   const appendNewList = () => {
     //  cogemos el text del input
     let listName = addListInput.val();
+
     //Nombre por defecto de la lista si el valor es ''
-    if (listName === '') {
+    if (listName === '' || listName.trim().length < 1) {
       alert("Añade un título");
       return;
     }
@@ -38,14 +52,16 @@ $(document).ready(function() {
 
     // Limpiamos el texto del input
     addListInput.val('');
+    saveStorage();
 
   }
 
-  const nameDisable = function() {
-    console.log('hola');
-    $(event.target.querySelector('.task-name')).attr('disabled', true);
-  }
-
+  // const nameDisable = function() {
+  //   console.log('hola');
+  //   $(event.target.querySelector('.task-name')).attr('disabled', true);
+  // }
+  //
+var bordercolor = '#ffffff';
 
   // codigo html para una task
   let createTaskString = taskName =>
@@ -64,8 +80,11 @@ $(document).ready(function() {
           <div class="collapsible-header"><i class="material-icons">settings</i></div>
           <div class="collapsible-body">
             <ul>
-              <li><a class="edit" href="#"><i class="material-icons">create</i></a></li>
-              <li><a class="delete" href="#"><i class="material-icons">delete</i></a></li>
+              <li><a class="edit"><i class="material-icons">create</i></a></li>
+              <li><a class="delete"><i class="material-icons">delete</i></a></li>
+              <li><button
+    class="jscolor {valueElement:null,value:'66ccff'}"
+    style="width:20px; height:20px;"></button></li>
             </ul>
           </div>
         </li>
@@ -77,7 +96,7 @@ $(document).ready(function() {
     // cogemos el valor del input de task
     let taskInputValue = tInput.val();
     //Nombre por defecto de la lista si el valor es ''
-    if (taskInputValue === '') {
+    if (taskInputValue === '' || taskInputValue.trim().length < 1) {
       alert("Añade un título");
       return;
     }
@@ -89,6 +108,8 @@ $(document).ready(function() {
 
     // reseteamos el valor del input a vacio
     tInput.val('');
+    saveStorage();
+
   }
 
 
@@ -97,13 +118,17 @@ $(document).ready(function() {
     // cuando se clicka el botón enter --> code 13
     if (event.keyCode === 13) {
       appendNewList();
+      saveStorage();
     }
+
   })
 
   //añadir lista clickando en el botón
   addListButton.on('click', function(event) {
     appendNewList();
     $(document.querySelector('label')).removeClass('active');
+    saveStorage();
+
   })
 
 
@@ -111,6 +136,8 @@ $(document).ready(function() {
   $('.lists').on('click', '.listHeader a', function(event) {
     let listNode = $(event.target.closest('.list'));
     listNode.detach();
+    saveStorage();
+
   })
 
 
@@ -126,8 +153,11 @@ $(document).ready(function() {
 
       autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
 
+
       $(event.target.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
+      jscolor.installByClassName("jscolor");
     }
+
   })
 
 
@@ -142,9 +172,7 @@ $(document).ready(function() {
     appendNewTask(taskNode, addTaskInput);
 
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
-
     $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
-
   })
 
 
@@ -152,6 +180,7 @@ $(document).ready(function() {
   $('.lists').on('click', '.tasks .task .delete', function(event) {
     let tasksNode = $(event.target.closest('.task'));
     tasksNode.detach();
+    saveStorage();
   })
 
 
@@ -159,12 +188,23 @@ $(document).ready(function() {
     $(event.target.closest('.task').querySelector('.task-name')).removeAttr('disabled');
     $(event.target.closest('.task').querySelector('.task-name')).focus();
     autosize($(event.target.closest('.task').querySelector('.task-name')));
+    saveStorage();
+
   })
 
-  $('.lists').on('keyup', '.task .task-name', function(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      $(event.target).attr('disabled');
-    }})
+  // $('.lists').on('keyup', '.task .task-name', function(event) {
+  //   if (event.keyCode === 13) {
+  //     event.preventDefault();
+  //     $(event.target).attr('disabled');
+  //     saveStorage();
+  //
+  //   }
+  // })
 
+
+  $('.lists').on('change', '.tasks .task .jscolor',function(event){
+    console.log($(event.target.closest('.task')));
+    console.log(jscolor.fromString(jsObj.toHEXString()));
+    $(event.target.closest('.task')).css("border-left", "10px solid" + jscolor);
+  })
 })
