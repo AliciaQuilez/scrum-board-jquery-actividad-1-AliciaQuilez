@@ -197,6 +197,6 @@ $(document).ready(function() {
   $('.lists').on('change', '.tasks .task .jscolor',function(event){
     let color = $(event.target).css('background-color');
     $(event.target.closest('.card-panel')).css("border-left-color", color);
-
+saveStorage();
   })
 })
