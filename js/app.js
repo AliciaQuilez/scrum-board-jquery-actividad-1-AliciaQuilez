@@ -5,6 +5,7 @@ $(document).ready(function() {
       $('.lists').html((JSON.parse(localStorage.getItem('saved'))));
     }
     M.AutoInit();
+    jscolor.installByClassName("jscolor");
   });
 
 
@@ -192,7 +193,10 @@ var bordercolor = '#ffffff';
     saveStorage();
 
   })
-
+$('.lists').on('change', '.task .task-name', function(event){
+  console.log('hola');
+  $(event.target.closest('.task').querySelector('.task-name')).attr('disabled');
+})
   // $('.lists').on('keyup', '.task .task-name', function(event) {
   //   if (event.keyCode === 13) {
   //     event.preventDefault();
@@ -203,10 +207,10 @@ var bordercolor = '#ffffff';
   // })
 
 
-  $('.lists').on('click', '.tasks .task button',function(event){
-    console.log('hola');
-    console.log($(event.target.closest('.task')));
-    console.log('#'+jscolor);
-    $(event.target.closest('.task')).css("border-left", "10px solid #" + jscolor);
-  })
+  // $('.lists').on('click', '.tasks .task button',function(event){
+  //   console.log('hola');
+  //   console.log($(event.target.closest('.task')));
+  //   console.log('#'+jscolor);
+  //   $(event.target.closest('.task')).css("border-left", "10px solid #" + jscolor);
+  // })
 })
