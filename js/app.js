@@ -58,13 +58,6 @@ $(document).ready(function() {
 
   }
 
-  // const nameDisable = function() {
-  //   console.log('hola');
-  //   $(event.target.querySelector('.task-name')).attr('disabled', true);
-  // }
-  //
-var bordercolor = '#ffffff';
-
   // codigo html para una task
   let createTaskString = taskName =>
     `<div class="task card-panel">
@@ -159,7 +152,7 @@ var bordercolor = '#ffffff';
       $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
       jscolor.installByClassName("jscolor");
     }
-
+    saveStorage();
   })
 
 
@@ -175,6 +168,7 @@ var bordercolor = '#ffffff';
 
     autosize($(event.target.parentNode.parentNode.querySelector('textarea')));
     $(event.target.parentNode.parentNode.parentNode.querySelectorAll('.collapsible')).collapsible();
+    saveStorage();
   })
 
 
@@ -185,18 +179,22 @@ var bordercolor = '#ffffff';
     saveStorage();
   })
 
-
+  //edita textarea
   $('.lists').on('click', '.task .edit', function(event) {
     $(event.target.closest('.task').querySelector('.task-name')).removeAttr('disabled');
     $(event.target.closest('.task').querySelector('.task-name')).focus();
     autosize($(event.target.closest('.task').querySelector('.task-name')));
     saveStorage();
-
   })
-$('.lists').on('change', '.task .task-name', function(event){
-  console.log('hola');
-  $(event.target.closest('.task').querySelector('.task-name')).attr('disabled');
-})
+
+  //disable textarea cuando ya se ha modificado
+  $('.lists').on('change', '.task .task-name', function(event) {
+    console.log('hola');
+    $(event.target).attr('disabled', true);
+    saveStorage();
+  })
+
+
   // $('.lists').on('keyup', '.task .task-name', function(event) {
   //   if (event.keyCode === 13) {
   //     event.preventDefault();
